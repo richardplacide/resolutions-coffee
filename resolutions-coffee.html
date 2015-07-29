@@ -1,0 +1,66 @@
+<head>
+  <title>Resolutions</title>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+  		<h1>Monthly Resolutions</h1>
+  		<div class="row">
+			<div class="col-md-4">
+        <label class="hide-finished">
+          <input type="checkbox" checked="{{hideFinished}}">
+            Hide finished resolutions
+        </label>
+        <br>
+        <br>
+
+	  		<form action="" class="new-resolution">
+	  			<input type="text" name="title" placeholder="A new resolution" class="form-control">
+	  			<input type="submit" value="submit" class="btn btn-default pull-right">
+	  		</form>
+
+	  		</div>
+  		</div>
+
+
+  	<div class="row">
+      <h4>Resolutions:</h4>
+    	<div class="col-md-4">
+    		{{#each resolutions}}
+    			{{> resolution}}
+    		{{/each}}
+    	</div>
+    </div> <!-- row -->
+
+
+    <div class="row">
+      {{> loginButtons }}
+    </div>
+
+
+ </div> <!-- container -->
+
+
+</body>
+
+<template name="resolution">
+  <p class="{{#if checked}}checked{{/if}}">
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+    {{#if isOwner}}
+      <button class="btn btn-s toggle-private">
+        {{#if private}}
+          Private
+        {{else}}
+          Public
+        {{/if}}
+      </button>
+    {{/if}}
+  	{{title}}
+    {{#if isOwner}}
+  	  <button class="btn btn-danger btn-xs delete pull-right">Remove</button>
+    {{/if}}
+  </p>
+</template>
